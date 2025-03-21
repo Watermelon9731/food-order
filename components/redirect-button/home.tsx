@@ -19,7 +19,7 @@ export default function HomeButton() {
       <Button
         variant={"outline"}
         className="w-5/6 rounded-full bg-blue-500 border-none text-white font-semibold text-xl p-6"
-        onClick={() => router.push("/explore")}
+        onClick={() => router.push("/my-order")}
       >
         Get started
       </Button>

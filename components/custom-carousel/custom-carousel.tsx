@@ -1,59 +1,49 @@
 "use client";
 
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
+import { PlusIcon } from "lucide-react";
 import Image from "next/image";
-import React from "react";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 
 export default function CustomCarousel() {
   const renderItem = () => {
-    return (
-      <AspectRatio ratio={3 / 4}>
-        <Image
-          src="https://picsum.photos/200/300"
-          alt="Image"
-          fill
-          className="rounded-md object-cover"
-        />
-      </AspectRatio>
-    );
+    const sample = new Array(5).fill(0);
+    return sample.map((idx) => (
+      <CarouselItem key={idx} className="h-[350px] w-[200px] basis-1/2">
+        <AspectRatio ratio={3 / 4}>
+          <Image
+            src="https://picsum.photos/200/300"
+            alt="Image"
+            fill
+            className="rounded-md object-cover"
+          />
+        </AspectRatio>
+
+        <div className="flex flex-col justify-end pt-2 gap-2">
+          <h4 className="font-medium text-lg capitalize line-clamp-2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam,
+            cumque ipsam quae quo laudantium
+          </h4>
+          <div className="flex justify-between">
+            <p className="line-clamp-1 text-gray-400 flex-1">
+              laudantium! Hic, velit natus voluptatem doloribus magnam suscipit
+              excepturi repellat delectus!
+            </p>
+            <div className="flex-1 flex justify-end">
+              <div className="w-fit h-fit px-1 bg-amber-500 rounded-lg">
+                <PlusIcon color="white" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </CarouselItem>
+    ));
   };
   return (
-    <div>
-      <div className="h-[200px] h-">
+    <div className="pt-4">
+      <div className="h-[360px] w-full min-w-[200px]">
         <Carousel>
-          <CarouselContent>
-            <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-              <AspectRatio ratio={3 / 4}>
-                <Image
-                  src="https://picsum.photos/200/300"
-                  alt="Image"
-                  fill
-                  className="rounded-md object-cover"
-                />
-              </AspectRatio>
-            </CarouselItem>
-            <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-              <AspectRatio ratio={3 / 4}>
-                <Image
-                  src="https://picsum.photos/200/300"
-                  alt="Image"
-                  fill
-                  className="rounded-md object-cover"
-                />
-              </AspectRatio>
-            </CarouselItem>
-            <CarouselItem className="md:basis-1/2 lg:basis-1/3">
-              <AspectRatio ratio={3 / 4}>
-                <Image
-                  src="https://picsum.photos/200/300"
-                  alt="Image"
-                  fill
-                  className="rounded-md object-cotain"
-                />
-              </AspectRatio>
-            </CarouselItem>
-          </CarouselContent>
+          <CarouselContent>{renderItem()}</CarouselContent>
         </Carousel>
       </div>
     </div>
