@@ -4,11 +4,29 @@ import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import { PlusIcon } from "lucide-react";
 import Image from "next/image";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+import { getRecommendFood } from "@/app/api/foods/recommend-food";
+import { useEffect } from "react";
 
 export default function CustomCarousel() {
+  const getData = async () => {
+    try {
+      const data = await getRecommendFood();
+      console.log(data, data.data);
+      data.data.map(item => console.log(item))
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const renderItem = () => {
     const sample = new Array(5).fill(0);
-    return sample.map((idx) => (
+    return sample.map((item, idx) => (
       <CarouselItem key={idx} className="h-[350px] w-[200px] basis-1/2">
         <AspectRatio ratio={3 / 4}>
           <Image
